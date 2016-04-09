@@ -1,6 +1,7 @@
 FROM java:8
 
-ENV JIRA_VERSION 7.1.1
+ENV JIRA_VERSION 7.1.4
+ENV CONFLUENCE_VERSION 5.9.7
 
 RUN \
   	apt-get update && \
@@ -13,6 +14,10 @@ RUN \
 
 EXPOSE 2990
 
-RUN atlas-run-standalone --product jira --version $JIRA_VERSION --bundled-plugins com.atlassian.jwt:jwt-plugin:1.1.0,com.atlassian.bundles:json-schema-validator-atlassian-bundle:1.0.4,com.atlassian.webhooks:atlassian-webhooks-plugin:1.0.6,com.atlassian.upm:atlassian-universal-plugin-manager-plugin:2.17.14-D20140902T224549,com.atlassian.plugins:atlassian-connect-plugin:1.1.4 --jvmargs -Datlassian.upm.on.demand=true
-
-CMD atlas-run-standalone --product jira --version $JIRA_VERSION --bundled-plugins com.atlassian.jwt:jwt-plugin:1.1.0,com.atlassian.bundles:json-schema-validator-atlassian-bundle:1.0.4,com.atlassian.webhooks:atlassian-webhooks-plugin:1.0.6,com.atlassian.upm:atlassian-universal-plugin-manager-plugin:2.17.14-D20140902T224549,com.atlassian.plugins:atlassian-connect-plugin:1.1.4 --jvmargs -Datlassian.upm.on.demand=true
+RUN mkdir /srv/atlassian/ \
+&& mkdir /srv/atlassian/jira \
+&& mkdir /srv/atlassian/confluence \
+&& cd /srv/atlassian/jira \
+&& atlas-run-standalone --product jira --version $JIRA_VERSION \
+&& cd /srv/atlassian/confluence \
+&& atlas-run-standalone --product confluence --version $CONFLUENCE_VERSION
