@@ -1,3 +1,4 @@
 # Atlassian SDK
 
-THis uses the official Java image.
+This uses the official Java image.  
+Pulls the sdk from the https://sdkrepo.atlassian.com/debian/ stable contrib.
