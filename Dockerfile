@@ -18,6 +18,7 @@ RUN mkdir /srv/atlassian/ \
 && mkdir /srv/atlassian/jira \
 && mkdir /srv/atlassian/confluence \
 && cd /srv/atlassian/jira \
-&& atlas-run-standalone --product jira --version $JIRA_VERSION \
+&& atlas-run-standalone --product jira --version $JIRA_VERSION --jvmargs -Datlassian.upm.on.demand=true \
 && cd /srv/atlassian/confluence \
-&& atlas-run-standalone --product confluence --version $CONFLUENCE_VERSION
+&& atlas-run-standalone --product confluence --version $CONFLUENCE_VERSION --jvmargs -Datlassian.upm.on.demand=true \
+&& echo "done"
