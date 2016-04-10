@@ -5,4 +5,4 @@ if [ ! -z "$1" ]
     TAG=$1
 fi
 
-docker build -t joshbtn/atlas-sdk:$TAG .
+docker build -t joshbtn/atlas-sdk-jira:$TAG .
