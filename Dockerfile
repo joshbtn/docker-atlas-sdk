@@ -1,7 +1,7 @@
 FROM java:8
 
 ENV JIRA_VERSION 7.1.4
-EVN SDK_VERSION 6.2.4
+ENV SDK_VERSION 6.2.4
 
 RUN \
   	apt-get update && \
@@ -19,4 +19,6 @@ RUN \
 
 EXPOSE 2990
 
-CMD atlas-run-standalone --product jira --version $JIRA_VERSION
+COPY $PWD/content/start-standalone.sh /srv/atlassian/jira/start-standalone.sh
+
+CMD ["/srv/atlassian/jira/start-standalone.sh"]
